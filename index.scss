@@ -38,7 +38,12 @@ html, body {
     font-family: $default-font;
 
     #img-box-desk {
-        display: none;
+        position: absolute;
+        left: -100vw;
+                
+        &:focus + div label {
+        color: $hover-text;
+        }
     }
 }
 
