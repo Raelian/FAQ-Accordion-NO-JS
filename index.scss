@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+/* Primary text colors */
+$main-text: hsl(238, 29%, 16%);
+$hover-text: hsl(14, 88%, 65%);
+
+/* Primary background gradient */
+$bg-top: hsl(273, 75%, 66%);
+$bg-bottom: hsl(240, 73%, 65%);
+
+/* Neutral text colors*/
+$question-text: hsl(237, 12%, 33%);
+$answer-text: hsl(240, 6%, 50%);
+
+/* Neutral dividers */
+$divider: hsl(240, 5%, 91%);
+
+/* Font family */
+$default-font: 'Kumbh Sans', sans-serif;
+
+:root {
+    font-size: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-image: linear-gradient($bg-top, $bg-bottom);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: $default-font;
+
+    #img-box-desk {
+        display: none;
+    }
+}
+
+#card {
+    background-color: white;
+    z-index: 2;
+    height: 100%;
+    min-height: 540px;
+    width: 100%;
+    min-width: 275px;
+    max-width: 320px;
+    margin: 115px 25px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 60px 60px -60px;
+    
+
+    #img-woman-mobile {
+        position: absolute;
+        width: 260px;
+        top: -108px;
+        left: 20px;
+        z-index: 3;
+    }
+
+    #img-shadow-mobile {
+        position: absolute;
+        width: 235px;
+        top: 0;
+        left: 45px;
+        z-index: 2;
+    }
+
+    #img-shadow-desk, #img-woman-desk {
+        display: none;
+    }
+
+    #card-faq {
+        height: 100%;
+        min-height: inherit;
+        width: 100%;
+        min-width: inherit;
+        max-width: inherit;
+        padding: 0 25px;
+
+        h1 {
+            text-align: center;
+            font-size: 2.6em;
+            color: $main-text;
+            margin-top: 145px;
+            margin-bottom: 35px;
+        }
+
+        hr {
+            border: 1px solid $divider;
+        }
+
+        .accordion {
+
+            /* Used input checkbox, labels and checked selector to make collapsable text without javascript */
+
+            > input[name="collapse"] {
+                position: absolute;
+                left: -100vw;
+                
+                &:focus + div label {
+                    color: $hover-text;
+                }
+            }
+
+            > input[name="collapse"]:checked ~ .faq-question label {
+                font-weight: bolder;
+                color: $main-text;
+            }
+
+            > input[name="collapse"]:checked ~ .faq-question label::after {
+                transform: rotate(180deg);
+                transition: 0.5s;
+            }
+
+            > input[name="collapse"]:checked ~ .faq-answer {
+                height: 30px;
+                transition: 0.5s;
+                margin-bottom: 1.8em;
+            }
+        
+            .faq-question {
+                color: $question-text;
+                position: relative;
+                margin: 1.5em 0;
+                font-weight: 400;
+
+                label {
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $hover-text;
+                    }
+
+                    &::after {
+                        content: url(images/icon-arrow-down.svg);
+                        position: absolute;
+                        right: 0;
+                        transform: rotate(0);
+                        transition: 0.5s;
+                    }
+                }
+            }
+
+            .faq-answer {
+                color: $answer-text;
+                overflow: hidden;
+                height: 0;
+                transition: 0.5s;
+                line-height: 1.4em;
+            }
+        }
+    }
+}
+
+@media screen and(min-width: 1000px) {
+    
+    html, body {
+        width: 100vw;
+
+        #img-box-wrap {
+            position: relative;
+
+            #img-box-desk {
+                left: -540px;
+                top: 265px;
+                z-index: 4;
+                display: block;
+                position: absolute;
+            }
+        }
+    }
+
+    #card {
+        overflow: hidden;
+        flex-direction: row;
+        justify-content: flex-end;
+        max-width: 930px;
+        margin-left: 60px;
+        margin-top: 60px;
+        min-height: 500px; 
+
+        #img-woman-mobile, #img-shadow-mobile {
+            display: none;
+        }
+
+        #img-shadow-desk, #img-woman-desk {
+            display: block;
+            position: absolute;
+        }
+
+        #img-shadow-desk {
+            left: -580px;
+            bottom: -150px;
+            z-index: 2;
+        }
+
+        #img-woman-desk {
+            left: -80px;
+            top: 70px;
+            z-index: 3;
+        }
+
+        #card-faq {
+            margin-right: 100px;
+            text-align: left;
+            max-width: 40%;
+
+            .faq-question {
+                font-size: 1.1em;
+            }
+
+            h1{
+                text-align: left;
+                margin-top: 70px;
+            }
+        }
+    }
+}
